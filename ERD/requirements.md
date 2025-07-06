@@ -185,11 +185,3 @@ Before submission, ensure the ERD includes:
 4. Place file in the ERD/ directory
 5. Update this README with any additional notes
 6. Verify relationships match the database schema
-
-## Notes
-
-- The ERD should match the database schema exactly
-- Focus on clarity and completeness over artistic design
-- Use consistent notation throughout
-- Consider the audience (developers, stakeholders)
-- Include any additional business rules discovered during design
