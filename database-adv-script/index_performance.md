@@ -56,11 +56,70 @@ Index Cond: (user_id = '...')
 Total runtime: 5 ms
 ```
 
+## Key Indexes Created
+
+### User Table Indexes
+- `idx_users_email` - For fast user lookup by email
+- `idx_users_role` - For filtering users by role
+
+### Property Table Indexes
+- `idx_properties_host_id` - For finding properties by host
+- `idx_properties_location` - For location-based searches
+- `idx_properties_price_per_night` - For price-based filtering
+
+### Booking Table Indexes
+- `idx_bookings_user_id` - For finding bookings by user
+- `idx_bookings_property_id` - For finding bookings by property
+- `idx_bookings_status` - For filtering by booking status
+- `idx_bookings_dates` - For date range queries
+
+## Performance Measurement Queries
+
+The following queries are used to measure performance:
+
+1. **User Lookup by Email**
+   ```sql
+   EXPLAIN ANALYZE
+   SELECT * FROM users WHERE email = 'john.smith@email.com';
+   ```
+
+2. **Booking Lookup by User ID**
+   ```sql
+   EXPLAIN ANALYZE
+   SELECT * FROM bookings WHERE user_id = '550e8400-e29b-41d4-a716-446655440002';
+   ```
+
+3. **Property Lookup by Host ID**
+   ```sql
+   EXPLAIN ANALYZE
+   SELECT * FROM properties WHERE host_id = '550e8400-e29b-41d4-a716-446655440001';
+   ```
+
+4. **Booking Lookup by Status**
+   ```sql
+   EXPLAIN ANALYZE
+   SELECT * FROM bookings WHERE status = 'confirmed';
+   ```
+
+5. **Date Range Queries**
+   ```sql
+   EXPLAIN ANALYZE
+   SELECT * FROM bookings WHERE start_date >= '2024-01-01' AND end_date <= '2024-12-31';
+   ```
+
+## Expected Performance Improvements
+
+- **Email lookups**: 95% improvement (from sequential scan to index scan)
+- **User booking queries**: 90% improvement with proper indexing
+- **Date range queries**: 80% improvement with composite date index
+- **Status filtering**: 85% improvement with status index
+
 ## Tips
 - Use realistic queries that reflect actual application usage.
 - Test with and without indexes for fair comparison.
 - Try different columns and combinations (e.g., composite indexes).
 - Document your findings for each query tested.
+- Monitor index usage and maintenance overhead.
 
 ## Conclusion
-Indexes can dramatically improve query performance, especially for large tables and frequent queries. Use this template to demonstrate and justify your indexing strategy. 
+Indexes can dramatically improve query performance, especially for large tables and frequent queries. Use this template to demonstrate and justify your indexing strategy. The performance improvements should be measurable and significant for high-traffic applications. 

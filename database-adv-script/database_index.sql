@@ -1,3 +1,6 @@
+-- Database Index Optimization Script
+-- This script creates indexes for high-usage columns and measures performance
+
 -- Performance measurement queries with EXPLAIN ANALYZE
 -- Test queries before adding indexes
 
@@ -21,6 +24,7 @@ SELECT * FROM bookings WHERE status = 'confirmed';
 EXPLAIN ANALYZE
 SELECT * FROM bookings WHERE start_date >= '2024-01-01' AND end_date <= '2024-12-31';
 
+-- CREATE INDEX commands for high-usage columns
 -- Indexes for User table
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_users_role ON users(role);
